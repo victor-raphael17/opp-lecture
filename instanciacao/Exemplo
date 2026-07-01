@@ -1,0 +1,23 @@
+Um gerenciador de arquivos (tipo Google Drive) listando o conteúdo de uma pasta.
+
+Você faz a query e o banco devolve 3 linhas. Para cada arquivo você precisa
+exibir o tamanho de um jeito legível ("1.5 MB"), a extensão e se é uma imagem
+(pra decidir se mostra uma miniatura).
+
+#####################
+
+Uma transformação pura e sem estado, tipo humanReadableSize, sozinha, até 
+caberia bem como função. Muitos códigos reais têm um 
+formatBytes(int): string solto e tá ótimo. O ganho da POO não aparece numa 
+função isolada, ele aparece quando:
+
+- existe estado/invariante pra proteger (um File nunca pode ter tamanho 
+negativo);
+
+- existem muitas variações da mesma coisa (ImageFile, VideoFile com 
+thumbnail() diferente → aí entra o seu polimorfismo.php, que helpers 
+resolvem na base do if ($tipo === ...) espalhado);
+
+- o sistema cresce e você precisa que cada peça seja confiável sem 
+inspecionar o resto.
+
