@@ -12,7 +12,7 @@ class Pato
 
     public function dormir(): string
     {
-        return "{$this->nome} está dormindo";
+        return "{$this->nome} está dormindo, ebaaa";
     }
 
     public function grasnar(): string
@@ -29,7 +29,7 @@ class Galinha
 
     public function dormir(): string
     {
-        return "{$this->nome} está dormindo"; // dormir() idêntico ao do Pato
+        return "{$this->nome} está dormindo, ebaaa"; // dormir() idêntico ao do Pato
     }
 
     public function cacarejar(): string
@@ -48,7 +48,7 @@ echo (new Galinha("Cocó"))->dormir() . PHP_EOL;
 // O comportamento comum sobe para uma classe geral (Animal).
 // As específicas usam extends e só acrescentam o que é próprio delas.
 
-class Animal
+abstract class Animal
 {
     public function __construct(protected string $nome)
     {
@@ -56,13 +56,15 @@ class Animal
 
     public function dormir(): string
     {
-        return "{$this->nome} está dormindo";
+        return "{$this->nome} está dormindo, ebaaa";
     }
+
+    public abstract function fazerSom(): string;
 }
 
 class Cachorro extends Animal
 {
-    public function latir(): string
+    public function fazerSom(): string
     {
         return "Au au";
     }
@@ -70,7 +72,7 @@ class Cachorro extends Animal
 
 class Gato extends Animal
 {
-    public function miar(): string
+    public function fazerSom(): string
     {
         return "Miau";
     }
@@ -78,7 +80,7 @@ class Gato extends Animal
 
 $dog = new Cachorro("Rex");
 echo $dog->dormir() . PHP_EOL; // herdado de Animal, sem reescrever
-echo $dog->latir() . PHP_EOL;
+echo $dog->fazerSom() . PHP_EOL;
 
 echo (new Gato("Mingau"))->dormir() . PHP_EOL; // mesmo dormir(), definido num lugar só
 

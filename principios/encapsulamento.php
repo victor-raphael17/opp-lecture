@@ -63,7 +63,7 @@ class ContaBancaria
         return $this->saldo;
     }
 
-    public function setSaldo(float $valor): void
+    public function depositar(float $valor): void
     {
         if ($valor <= 0) {
             throw new InvalidArgumentException("Valor do depósito deve ser positivo");
@@ -74,6 +74,6 @@ class ContaBancaria
 
 $conta = new ContaBancaria(100);
 $conta->sacar(30);
-//$conta->saldo = -5000;     // Error: Cannot access private property — a linguagem barra
+#$conta->saldo = -5000;     // Error: Cannot access private property — a linguagem barra
 // new ContaBancaria(-5000);  // InvalidArgumentException — nem na criação o estado fica inválido
 echo $conta->getSaldo() . PHP_EOL; // 70

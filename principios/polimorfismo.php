@@ -40,8 +40,6 @@ class Retangulo implements Forma
 {
     public function __construct(private float $base, private float $altura)
     {
-        $this->base = $base;
-        $this->altura = $altura;
     }
 
     public function area(): float
